@@ -4,13 +4,16 @@ CREATE DATABASE IF NOT EXISTS hermes;
 CREATE TABLE IF NOT EXISTS hermes.logs
 (
   id             Int64,
-  application    String,
+  tag            String,
   timestamp      Int64,
   date           FixedString(8),
   container_name String,
-  container_id   String,
-  message        String
-)
-  ENGINE = MergeTree()
-    PARTITION BY (application, date)
-    ORDER BY (application, timestamp);
+  level          String,
+  message        String,
+  context Nested(
+    key String,
+    value String
+    )
+) ENGINE = MergeTree()
+    PARTITION BY (tag, date)
+    ORDER BY (tag, timestamp);

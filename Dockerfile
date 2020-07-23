@@ -1,5 +1,7 @@
 FROM yandex/clickhouse-server
 
+LABEL mainainer="xuanloc0511@gmail.com"
+
 COPY init-hermesdb.sql /docker-entrypoint-initdb.d/init-hermesdb.sql
 COPY hermes_conf.xml /etc/clickhouse-server/config.d/hermes_conf.xml
 COPY entrypoint.sh /entrypoint.sh
