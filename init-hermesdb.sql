@@ -8,12 +8,12 @@ CREATE TABLE IF NOT EXISTS hermes.logs
   timestamp      Int64,
   date           FixedString(8),
   container_name String,
-  level          String,
+  level          Int32,
   message        String,
   context Nested(
-    key String,
+    key   String,
     value String
-    )
+  )
 ) ENGINE = MergeTree()
     PARTITION BY (tag, date)
     ORDER BY (tag, timestamp);
